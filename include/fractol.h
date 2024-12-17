@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:49:47 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/03 17:15:35 by afelger          ###   ########.fr       */
+/*   Updated: 2024/12/06 15:39:20 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 # include <math.h>
 # include "MLX42/MLX42.h"
 
-# define WIN_WIDTH		1920
-# define WIN_HEIGHT		1080
+# define WIDTH		1920
+# define HEIGHT		1080
+# define FRACT_DEPTH	255
+
 # define ERR_MLX_INIT	0x1000
 # define ERR_MLX_WIN	0x1001
 
-typedef long double t_ldb;
+typedef double t_ldb;
 
 typedef struct s_vec4
 {
@@ -44,13 +46,21 @@ typedef struct s_screen
 	int	heigth;
 }	t_screen;
 
+typedef struct s_colormap
+{
+	int32_t *colors;
+	uint32_t length;
+}	t_colormap;
+
 typedef struct s_appstate
 {
 	double		zoom;
 	t_vec2		center;
 	mlx_image_t	*image;
 	mlx_t		*mlx;
+	t_colormap	*cmap;
 }	t_appstate;
+
 
 typedef int(*t_iter_func)(t_vec2 pos, t_ldb jreal, t_ldb jimg, int max_iterations);
 

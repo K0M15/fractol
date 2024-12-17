@@ -1,7 +1,7 @@
 .PHONY=all fractol fclean clean re mlx
 NAME=fractol
 CC=cc
-FLAGS=-Wall -Wextra -Werror -g
+FLAGS=-Wall -Wextra -Werror
 FLAGS_APP= -framework Cocoa -framework OpenGL -framework IOKit -lglfw
 MLX=lib/MLX42/build/libmlx42.a
 FILES=src/main.c
@@ -13,6 +13,12 @@ all: mlx $(NAME)
 
 mlx:
 	cd lib/MLX42/ && cmake -B build && cmake --build build -j4
+
+debug: FLAGS+=-g
+debug: re
+
+o: FLAGS+= -ffast-math -O3
+o: re
 
 $(NAME): $(FILES:.c=.o)
 	$(CC) $(FLAGS) $(FLAGS_APP) $(MLX) $(FILES:.c=.o) -o $(NAME) $(F_INC)
@@ -28,5 +34,10 @@ fclean: clean
 clean:
 	cd lib/MLX42/build && make clean
 	rm -f $(FILES:.c=.o)
+
+renew:
+	cd lib/MLX42/ && rm -rf ./build
+	cd lib/MLX42/ && cmake -B build && cmake --build build -j4
+renew: re
 
 re: fclean all
