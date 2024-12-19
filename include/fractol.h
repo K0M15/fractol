@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:49:47 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/19 15:53:47 by afelger          ###   ########.fr       */
+/*   Updated: 2024/12/19 16:09:30 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_appstate
 	mlx_t		*mlx;
 	t_colormap	*cmap;
 	int			iteration;
+	t_vec2		fractParam;
+	unsigned int	depth;
 }	t_appstate;
 
 typedef struct s_renderpara
