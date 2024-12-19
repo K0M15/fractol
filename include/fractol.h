@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:49:47 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/06 15:39:20 by afelger          ###   ########.fr       */
+/*   Updated: 2024/12/19 15:53:47 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@
 
 # define WIDTH		1920
 # define HEIGHT		1080
-# define FRACT_DEPTH	255
+# define PIXELS		WIDTH * HEIGHT
+# define FRACT_DEPTH	255*3
+# define START_ITERATION	5
 
 # define ERR_MLX_INIT	0x1000
 # define ERR_MLX_WIN	0x1001
 
-typedef double t_ldb;
+typedef long double t_ldb;
 
 typedef struct s_vec4
 {
@@ -59,8 +61,15 @@ typedef struct s_appstate
 	mlx_image_t	*image;
 	mlx_t		*mlx;
 	t_colormap	*cmap;
+	int			iteration;
 }	t_appstate;
 
+typedef struct s_renderpara
+{
+	int		startx;	// startpoint of x
+	int		add;	// amount added to x
+	int		fill;	// filled pixels
+}	t_renderparam;
 
 typedef int(*t_iter_func)(t_vec2 pos, t_ldb jreal, t_ldb jimg, int max_iterations);
 
