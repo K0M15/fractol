@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:49:45 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/03 17:15:36 by afelger          ###   ########.fr       */
+/*   Updated: 2024/12/22 12:46:06 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int julia_iter(t_vec2 pos, t_ldb jreal, t_ldb jimg, int max_iterations)
 		pos.x = temp;
 		iter++;
 	}
+	if (iter == max_iterations)
+		return (0);
 	return (iter);
 }
 
@@ -42,6 +44,8 @@ int mandelbrot_iter(t_vec2 pos, t_ldb real, t_ldb img, int max_iterations)
 		img = buffer.y;
 		iter++;
 	}
+	if (iter == max_iterations)
+		return (0);
 	return (iter);
 }
 
