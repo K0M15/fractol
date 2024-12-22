@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:49:47 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/22 12:56:00 by afelger          ###   ########.fr       */
+/*   Updated: 2024/12/22 14:02:36 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ typedef struct s_renderpara
 	int		add;	// amount added to x
 	int		fill;	// filled pixels
 }	t_renderparam;
+
+struct s_i32vec2 {
+	int32_t x;
+	int32_t y;
+};
 
 typedef int(*t_iter_func)(t_vec2 pos, t_ldb jreal, t_ldb jimg, int max_iterations);
 

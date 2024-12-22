@@ -6,15 +6,15 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:51:28 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/22 11:12:05 by afelger          ###   ########.fr       */
+/*   Updated: 2024/12/22 13:57:22 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_colormap	*get_maps()
+t_colormap	*get_maps(void)
 {
-	t_colormap *result;
+	t_colormap	*result;
 
 	result = malloc(COLORMAP_COUNT * sizeof(t_colormap));
 	result[0] = colormap_crazy;
