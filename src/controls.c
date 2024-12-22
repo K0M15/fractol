@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 11:47:49 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/22 14:04:33 by afelger          ###   ########.fr       */
+/*   Updated: 2024/12/22 14:42:38 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,16 @@ void	handle_iterations(t_appstate *state)
 	{
 		state->depth -= 10;
 		state->iteration = START_ITERATION;
+	}
+}
+
+void handle_fract_select(t_appstate *state)
+{
+	if(mlx_is_key_down(state->mlx, MLX_KEY_X))
+	{
+		state->selected_fractal++;
+		state->iteration = START_ITERATION;
+		state->fractParam.x = state->fractals[state->selected_fractal].init_vals.x;
+		state->fractParam.x = state->fractals[state->selected_fractal].init_vals.y;
 	}
 }

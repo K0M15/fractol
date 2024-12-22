@@ -6,11 +6,13 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:54:27 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/02 16:38:43 by afelger          ###   ########.fr       */
+/*   Updated: 2024/12/22 14:16:40 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void display_help()
+#include "ft_printf.h"
+
+void	display_help()
 {
-	
+	ft_printf("Usage: fractol");
 }

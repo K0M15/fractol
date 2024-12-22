@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 11:32:39 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/22 13:52:14 by afelger          ###   ########.fr       */
+/*   Updated: 2024/12/22 14:29:31 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	state_construct(t_appstate *state)
 	state->fractParam.x = -0.7;
 	state->fractParam.y = 0.27015;
 	state->maps = get_maps();
-	state->depth = 30;
+	state->fractals = get_fracts();
+	state->depth = 100;
 	if (!state->mlx)
 	{
 		puts(mlx_strerror(mlx_errno));

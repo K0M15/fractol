@@ -21,14 +21,14 @@ void	render_julia_iter(t_appstate *state, t_vec4 map, t_renderparam para)
 		while (x < WIDTH)
 		{
 			map_pixel_screen(&buffer, x, y, map, screen);
-			col = julia_iter(buffer, state->fractParam.x, state->fractParam.y, state->depth);
+			col = FRACT(buffer, state->fractParam.x, state->fractParam.y, state->depth);
 			j = 0;
 			while (j < para.add && y + j < HEIGHT)
 			{
 				i = 0;
 				while(i < para.add && x + i < WIDTH)
 				{
-					mlx_put_pixel(state->image, x + i, y + j, MAPS(col%254));
+					mlx_put_pixel(state->image, x + i, y + j, MAPS(col, state->depth));
 					i++;
 				}
 				j++;
@@ -89,6 +89,7 @@ void ft_hook(t_appstate *state)
 	handle_colorselect(state);
 	handle_params_mod(state);
 	handle_iterations(state);	
+	handle_fract_select(state);
 }
 
 void ft_loop(t_appstate *state)
