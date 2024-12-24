@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 13:23:56 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/24 14:46:45 by afelger          ###   ########.fr       */
+/*   Updated: 2024/12/24 15:02:52 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,6 @@ void	ft_loop(t_appstate *state)
 	ft_hook(state);
 	draw_fract(state);
 	state->fc++;
-}
-
-void	scrollfunc(double xdelta, double ydelta, t_appstate *state)
-{
-	(void) xdelta;
-	state->zoom *= ydelta + 1;
-	state->iteration = START_ITERATION;
 }
 
 t_appstate	*getstate(void)
