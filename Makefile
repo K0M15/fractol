@@ -12,6 +12,9 @@ FILES+=src/colormaps.c
 FILES+=src/generators.c
 FILES+=src/state.c
 FILES+=src/controls.c
+FILES+=src/ft_strncmp.c
+FILES+=src/draw_loop.c
+FILES+=src/render.c
 F_INC=-Iinclude
 
 all: FT_PRINTF MLX42 $(NAME)

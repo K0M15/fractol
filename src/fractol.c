@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:49:45 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/22 12:46:06 by afelger          ###   ########.fr       */
+/*   Updated: 2024/12/24 13:08:31 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int mandelbrot_iter(t_vec2 pos, t_ldb real, t_ldb img, int max_iterations)
 	while (real * real + img * img < 4 && iter < max_iterations)
 	{
 		buffer.x = real * real - img * img + pos.x;
-		buffer.y = 2 * real * img * img;
+		buffer.y = 2 * real * img + pos.y;
 		real = buffer.x;
 		img = buffer.y;
 		iter++;
@@ -47,6 +47,28 @@ int mandelbrot_iter(t_vec2 pos, t_ldb real, t_ldb img, int max_iterations)
 	if (iter == max_iterations)
 		return (0);
 	return (iter);
+}
+
+int test_iter(t_vec2 pos, t_ldb real, t_ldb img, int max_iterations)
+{
+    int iter;
+    t_vec2 buffer;
+
+    iter = 0;
+    while (real * real + img * img < 4 && iter < max_iterations)
+    {
+        buffer.x = real * sin(real) - img * img + pos.x;
+        buffer.y = 2 * real * img + pos.y;
+        
+        real = buffer.x;
+        img = buffer.y;
+        
+        iter++;
+    }
+    
+    if (iter == max_iterations)
+        return (0);
+    return iter;
 }
 
 t_vec2 *map_pixel_screen(t_vec2 *result, int x, int y, t_vec4 map, t_screen screen)

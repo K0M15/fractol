@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:49:47 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/22 14:43:37 by afelger          ###   ########.fr       */
+/*   Updated: 2024/12/24 14:11:02 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,18 @@
 # define WINDOW_TITLE "Fract'ol by Alain"
 # define WIDTH		1920
 # define HEIGHT		1080
-# define START_ITERATION	5
+# define START_ITERATION	12
 
-typedef long double t_ldb;
+typedef double t_ldb;
+
+enum e_mode
+{
+	JULIA = 1,
+	MANDELBROT = 2,
+	TEST = 3,
+	MODEMAX,
+	ERROR
+};
 
 typedef struct s_vec4
 {
@@ -59,39 +68,50 @@ typedef struct s_appstate
 	mlx_t			*mlx;
 	t_colormap		*maps;
 	int				selected_map;
-	t_fractal		*fractals;
-	int				selected_fractal;
+	enum e_mode		mode;
 	int				iteration;
 	t_vec2			fractParam;
 	unsigned int	depth;
+	int				fc_en;
+	unsigned int	fc;
 }	t_appstate;
-
-typedef struct s_renderpara
-{
-	int		startx;	// startpoint of x
-	int		add;	// amount added to x
-	int		fill;	// filled pixels
-}	t_renderparam;
 
 struct s_i32vec2 {
 	int32_t x;
 	int32_t y;
 };
 
-# define FRACTAL_COUNT 2
+typedef struct s_renderpara
+{
+	int	startx;	// startpoint of x
+	int	add;	// amount added to x/y
+	int	fill;	// filled pixels
+}	t_renderparam;
+
+typedef struct s_renderstate
+{
+	int			x;
+	int			y;
+	int			i;
+	int			j;
+	int			col;
+	t_screen	screen;
+	t_vec2		buffer;
+}	t_renderstate;
+
 int julia_iter(t_vec2 pos, t_ldb jreal, t_ldb jimg, int max_iterations);
 int mandelbrot_iter(t_vec2 pos, t_ldb real, t_ldb img, int max_iterations);
-t_fractal *get_fracts(void);
-# define FRACT state->fractals[state->selected_fractal % FRACTAL_COUNT].fract
+int test_iter(t_vec2 pos, t_ldb real, t_ldb img, int max_iterations);
 
 t_vec2 *map_pixel_screen(t_vec2 *result, int x, int y, t_vec4 map, t_screen screen);
 t_vec4	*calc_map_area(t_vec4 *result, t_vec2 center, double zoom);
 
-# define COLORMAP_COUNT 4
+# define COLORMAP_COUNT 5
 unsigned int	colormap_crazy(unsigned char value, int depth);
 unsigned int	colormap_red(unsigned char value, int depth);
 unsigned int	colormap_green(unsigned char value, int depth);
 unsigned int	colormap_blue(unsigned char value, int depth);
+unsigned int	colormap_change(unsigned char value, int depth);
 t_colormap		*get_maps(void);
 # define MAPS state->maps[state->selected_map % COLORMAP_COUNT]
 
@@ -103,8 +123,14 @@ void handle_movement(t_appstate *state);
 void handle_colorselect(t_appstate *state);
 void handle_params_mod(t_appstate *state);
 void handle_iterations(t_appstate *state);
-void handle_fract_select(t_appstate *state);
 
 void setup_interrupts(t_appstate *state);
+
+void	display_help(void);
+void	draw_fract(t_appstate *state);
+void	render(t_appstate *state, t_vec4 map, t_renderparam para, int (* fract)(t_vec2, t_ldb, t_ldb, int));
+t_appstate	*getstate(void);
+
+int	ft_strncmp(const char *s1, const char *s2, unsigned long n);
 
 #endif /* FRACTOL_H */
