@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:54:27 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/24 12:58:14 by afelger          ###   ########.fr       */
+/*   Updated: 2024/12/24 14:47:47 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	display_help(void)
 	ft_printf("Controlls:\n");
 	ft_printf("	Mouse + Wheel:		Zoom to location\n");
 	ft_printf("	j+l / i+k:			change real/imagenary part of equation\n");
-	ft_printf("	1/2:				increase/decrease amount of iterations of equation\n");
+	ft_printf("	1/2:				increase/decrease amount of");
+	ft_printf("iterations of equation\n");
 	ft_printf("	c:					change color scheme\n");
 	ft_printf("	ESC:				quit\n");
 }

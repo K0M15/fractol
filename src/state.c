@@ -6,39 +6,41 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 11:32:39 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/24 14:29:19 by afelger          ###   ########.fr       */
+/*   Updated: 2024/12/24 14:39:56 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static enum e_mode parseMode(int argc, char **args)
+static enum e_mode	parsemode(int argc, char **args)
 {
-	int c;
-	enum e_mode mode;
+	int			c;
+	enum e_mode	mode;
 
 	c = -1;
 	mode = ERROR;
-	while(++c < argc)
-		if(ft_strncmp(args[c], "julia", 5) == 0)
+	while (++c < argc)
+	{
+		if (ft_strncmp(args[c], "julia", 5) == 0)
 			mode = JULIA;
-		else if(ft_strncmp(args[c], "mandelbrot", 10) == 0)
+		else if (ft_strncmp(args[c], "mandelbrot", 10) == 0)
 			mode = MANDELBROT;
-		else if(ft_strncmp(args[c], "test", 10) == 0)
+		else if (ft_strncmp(args[c], "test", 10) == 0)
 			mode = TEST;
-		else if(ft_strncmp(args[c], "-h", 2) == 0)
+		else if (ft_strncmp(args[c], "-h", 2) == 0)
 		{
 			mode = ERROR;
-			break;
+			break ;
 		}
-	if(mode == ERROR)
+	}
+	if (mode == ERROR)
 		display_help();
-	return mode;
+	return (mode);
 }
 
-static void init_mode_vals(t_appstate *state)
+static void	init_mode_vals(t_appstate *state)
 {
-	if (state->mode	 >= MODEMAX)
+	if (state->mode >= MODEMAX)
 		exit(EXIT_FAILURE);
 	if (state->mode == JULIA)
 	{
@@ -68,7 +70,7 @@ int	state_construct(t_appstate *state, int argc, char **argv)
 {
 	memset(state, 0, sizeof(t_appstate));
 	state->zoom = 1.0;
-	state->mode = parseMode(argc, argv);
+	state->mode = parsemode(argc, argv);
 	init_mode_vals(state);
 	state->mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, true);
 	state->iteration = START_ITERATION;

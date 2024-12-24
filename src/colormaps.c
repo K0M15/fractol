@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 10:47:12 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/24 14:35:03 by afelger          ###   ########.fr       */
+/*   Updated: 2024/12/24 14:54:36 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ unsigned int	colormap_blue(unsigned char value, int depth)
 
 unsigned int	colormap_change(unsigned char value, int depth)
 {
-	
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
