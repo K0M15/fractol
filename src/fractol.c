@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:49:45 by afelger           #+#    #+#             */
-/*   Updated: 2025/01/04 18:14:49 by afelger          ###   ########.fr       */
+/*   Updated: 2025/01/04 20:06:11 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,13 @@ int	test_iter(t_vec2 pos, t_ldb real, t_ldb img, int max_iterations)
 	return (iter);
 }
 
-t_vec2	*map_pixel_screen(t_vec2 *result, int x, int y,
+t_vec2	*map_pixel_screen(t_vec2 *result, struct s_i32vec2 pos,
 	t_vec4 map, t_screen screen)
 {
-	result->x = (long double)x / screen.width * (map.z - map.x) + map.x;
-	result->y = (long double)y / screen.height * (map.w - map.y) + map.y;
+	result->x = (long double)pos.x / screen.width * (map.z - map.x) + map.x;
+	result->y = (long double)pos.y / screen.height * (map.w - map.y) + map.y;
 	return (result);
 }
-
-
-// t_vec2	*map_pixel_screen(t_vec2 *result, int x, int y,
-// 	t_vec4 map, t_screen screen)
-// {
-// 	result->x = ((t_ldb)x / (screen.width / 2)) * (map.z - map.x);
-// 	result->y = ((t_ldb)y / (screen.heigth / 2)) * (map.w - map.y);
-// 	return (result);
-// }
 
 t_vec4	*calc_map_area(t_vec4 *result, t_vec2 center, double zoom)
 {

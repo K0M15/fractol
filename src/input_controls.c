@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 11:47:49 by afelger           #+#    #+#             */
-/*   Updated: 2025/01/04 18:13:36 by afelger          ###   ########.fr       */
+/*   Updated: 2025/01/04 20:03:39 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	handle_zoom(double xdelta, double ydelta, t_appstate *state)
 	(void) xdelta;
 	calc_map_area(&map, state->center, state->zoom);
 	mlx_get_mouse_pos(state->mlx, &cursor.x, &cursor.y);
-	map_pixel_screen((t_vec2 *) &crs_rel.x, cursor.x, cursor.y, map, state->screen);
+	map_pixel_screen((t_vec2 *) &crs_rel.x, cursor, map, state->screen);
 	if (ydelta < 0)
 		state->zoom *= 1.1;
 	else if (ydelta > 0)
 		state->zoom *= 0.9;
 	calc_map_area(&map, state->center, state->zoom);
-	map_pixel_screen((t_vec2 *) &crs_rel.z, cursor.x, cursor.y, map, state->screen);
+	map_pixel_screen((t_vec2 *) &crs_rel.z, cursor, map, state->screen);
 	state->center.x += crs_rel.x - crs_rel.z;
 	state->center.y += crs_rel.y - crs_rel.w;
 	state->iteration = START_ITERATION;

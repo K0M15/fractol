@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:49:47 by afelger           #+#    #+#             */
-/*   Updated: 2025/01/04 18:10:36 by afelger          ###   ########.fr       */
+/*   Updated: 2025/01/04 21:21:26 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define HEIGHT		1080
 # define START_ITERATION	12
 
-typedef double t_ldb;
+typedef double	t_ldb;
 
 enum e_mode
 {
@@ -53,11 +53,10 @@ typedef struct s_screen
 	int	height;
 }	t_screen;
 
-typedef unsigned int(* t_colormap)(unsigned char, int);
 typedef struct s_fractal
 {
-	int (* fract)(t_vec2, t_ldb, t_ldb, int);
-	t_vec2 init_vals;
+	int		(*fract)(t_vec2, t_ldb, t_ldb, int);
+	t_vec2	init_vals;
 }	t_fractal;
 
 typedef struct s_appstate
@@ -70,16 +69,17 @@ typedef struct s_appstate
 	int				selected_map;
 	enum e_mode		mode;
 	int				iteration;
-	t_vec2			fractParam;
+	t_vec2			fractparam;
 	unsigned int	depth;
 	int				fc_en;
 	unsigned int	fc;
 	t_screen		screen;
 }	t_appstate;
 
-struct s_i32vec2 {
-	int32_t x;
-	int32_t y;
+struct s_i32vec2
+{
+	int32_t	x;
+	int32_t	y;
 };
 
 typedef struct s_renderpara
@@ -100,40 +100,47 @@ typedef struct s_renderstate
 	t_vec2		buffer;
 }	t_renderstate;
 
-int julia_iter(t_vec2 pos, t_ldb jreal, t_ldb jimg, int max_iterations);
-int mandelbrot_iter(t_vec2 pos, t_ldb real, t_ldb img, int max_iterations);
-int test_iter(t_vec2 pos, t_ldb real, t_ldb img, int max_iterations);
+int					julia_iter(t_vec2 pos, t_ldb jreal,
+						t_ldb jimg, int max_iterations);
+int					mandelbrot_iter(t_vec2 pos, t_ldb real,
+						t_ldb img, int max_iterations);
+int					test_iter(t_vec2 pos, t_ldb real,
+						t_ldb img, int max_iterations);
 
-t_vec2	*map_pixel_screen(t_vec2 *result, int x, int y, t_vec4 map, t_screen screen);
-t_vec4	*calc_map_area(t_vec4 *result, t_vec2 center, double zoom);
+t_vec2				*map_pixel_screen(t_vec2 *result,
+						struct s_i32vec2 pos, t_vec4 map, t_screen screen);
+t_vec4				*calc_map_area(t_vec4 *result, t_vec2 center, double zoom);
 
 # define COLORMAP_COUNT 5
-unsigned int	colormap_crazy(unsigned char value, int depth);
-unsigned int	colormap_red(unsigned char value, int depth);
-unsigned int	colormap_green(unsigned char value, int depth);
-unsigned int	colormap_blue(unsigned char value, int depth);
-unsigned int	colormap_change(unsigned char value, int depth);
-t_colormap		*get_maps(void);
-# define MAPS state->maps[state->selected_map % COLORMAP_COUNT]
 
-int				state_construct();
-void			state_destruct();
+typedef uint32_t	(*t_colormap)(unsigned char value, int depth);
+unsigned int		colormap_crazy(unsigned char value, int depth);
+unsigned int		colormap_red(unsigned char value, int depth);
+unsigned int		colormap_green(unsigned char value, int depth);
+unsigned int		colormap_blue(unsigned char value, int depth);
+unsigned int		colormap_change(unsigned char value, int depth);
+t_colormap			*get_maps(void);
 
-void handle_zoom(double xdelta, double ydelta, t_appstate* state);
-void handle_movement(t_appstate *state);
-void handle_colorselect(t_appstate *state);
-void handle_params_mod(t_appstate *state);
-void handle_iterations(t_appstate *state);
+int					state_construct(void);
+void				state_destruct(void);
 
-void handle_resize(int32_t width, int32_t height,t_appstate *state);
+void				handle_zoom(double xdelta, double ydelta,
+						t_appstate *state);
+void				handle_movement(t_appstate *state);
+void				handle_colorselect(t_appstate *state);
+void				handle_params_mod(t_appstate *state);
+void				handle_iterations(t_appstate *state);
 
-void setup_interrupts(t_appstate *state);
+void				handle_resize(int32_t width, int32_t height,
+						t_appstate *state);
+void				setup_interrupts(t_appstate *state);
 
-void	display_help(void);
-void	draw_fract(t_appstate *state);
-void	render(t_appstate *state, t_vec4 map, t_renderparam para, int (* fract)(t_vec2, t_ldb, t_ldb, int));
-t_appstate	*getstate(void);
+void				display_help(void);
+void				draw_fract(t_appstate *state);
+void				render(t_appstate *state, t_vec4 map, t_renderparam para,
+						int (*fract)(t_vec2, t_ldb, t_ldb, int));
+t_appstate			*getstate(void);
 
-int	ft_strncmp(const char *s1, const char *s2, unsigned long n);
+int					ft_strncmp(const char *s1, const char *s2, unsigned long n);
 
 #endif /* FRACTOL_H */

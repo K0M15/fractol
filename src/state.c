@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 11:32:39 by afelger           #+#    #+#             */
-/*   Updated: 2025/01/04 18:22:29 by afelger          ###   ########.fr       */
+/*   Updated: 2025/01/04 20:08:05 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,28 +66,28 @@ static void	init_mode_vals(t_appstate *state)
 	}
 }
 
-int	state_construct(t_appstate *state, int argc, char **argv)
+int	state_construct(t_appstate *s, int argc, char **argv)
 {
-	memset(state, 0, sizeof(t_appstate));
-	state->zoom = 1.0;
-	state->mode = parsemode(argc, argv);
-	init_mode_vals(state);
-	state->mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, true);
-	state->iteration = START_ITERATION;
-	state->maps = get_maps();
-	state->depth = 100;
-	state->screen.height = HEIGHT;
-	state->screen.width = WIDTH;
-	if (!state->mlx)
+	memset(s, 0, sizeof(t_appstate));
+	s->zoom = 1.0;
+	s->mode = parsemode(argc, argv);
+	init_mode_vals(s);
+	s->mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, true);
+	s->iteration = START_ITERATION;
+	s->maps = get_maps();
+	s->depth = 100;
+	s->screen.height = HEIGHT;
+	s->screen.width = WIDTH;
+	if (!s->mlx)
 	{
 		puts(mlx_strerror(mlx_errno));
 		return (EXIT_FAILURE);
 	}
-	state->image = mlx_new_image(state->mlx, state->screen.width*2, state->screen.height*2);
-	mlx_set_window_limit(state->mlx, -1, -1, state->image->width, state->image->height);
-	if (mlx_image_to_window(state->mlx, state->image, 0, 0) == -1)
+	s->image = mlx_new_image(s->mlx, s->screen.width * 2, s->screen.height * 2);
+	mlx_set_window_limit(s->mlx, -1, -1, s->image->width, s->image->height);
+	if (mlx_image_to_window(s->mlx, s->image, 0, 0) == -1)
 	{
-		mlx_close_window(state->mlx);
+		mlx_close_window(s->mlx);
 		puts(mlx_strerror(mlx_errno));
 		return (EXIT_FAILURE);
 	}
