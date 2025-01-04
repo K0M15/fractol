@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:49:47 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/24 14:11:02 by afelger          ###   ########.fr       */
+/*   Updated: 2025/01/04 18:10:36 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_vec2
 typedef struct s_screen
 {
 	int	width;
-	int	heigth;
+	int	height;
 }	t_screen;
 
 typedef unsigned int(* t_colormap)(unsigned char, int);
@@ -74,6 +74,7 @@ typedef struct s_appstate
 	unsigned int	depth;
 	int				fc_en;
 	unsigned int	fc;
+	t_screen		screen;
 }	t_appstate;
 
 struct s_i32vec2 {
@@ -103,7 +104,7 @@ int julia_iter(t_vec2 pos, t_ldb jreal, t_ldb jimg, int max_iterations);
 int mandelbrot_iter(t_vec2 pos, t_ldb real, t_ldb img, int max_iterations);
 int test_iter(t_vec2 pos, t_ldb real, t_ldb img, int max_iterations);
 
-t_vec2 *map_pixel_screen(t_vec2 *result, int x, int y, t_vec4 map, t_screen screen);
+t_vec2	*map_pixel_screen(t_vec2 *result, int x, int y, t_vec4 map, t_screen screen);
 t_vec4	*calc_map_area(t_vec4 *result, t_vec2 center, double zoom);
 
 # define COLORMAP_COUNT 5
@@ -123,6 +124,8 @@ void handle_movement(t_appstate *state);
 void handle_colorselect(t_appstate *state);
 void handle_params_mod(t_appstate *state);
 void handle_iterations(t_appstate *state);
+
+void handle_resize(int32_t width, int32_t height,t_appstate *state);
 
 void setup_interrupts(t_appstate *state);
 

@@ -11,10 +11,11 @@ FILES+=src/help.c
 FILES+=src/colormaps.c
 FILES+=src/generators.c
 FILES+=src/state.c
-FILES+=src/controls.c
+FILES+=src/input_controls.c
 FILES+=src/ft_strncmp.c
 FILES+=src/draw_loop.c
 FILES+=src/render.c
+FILES+=src/window_controls.c
 F_INC=-Iinclude
 
 all: FT_PRINTF MLX42 $(NAME)

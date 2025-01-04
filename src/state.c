@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 11:32:39 by afelger           #+#    #+#             */
-/*   Updated: 2024/12/24 14:39:56 by afelger          ###   ########.fr       */
+/*   Updated: 2025/01/04 18:22:29 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,15 @@ int	state_construct(t_appstate *state, int argc, char **argv)
 	state->iteration = START_ITERATION;
 	state->maps = get_maps();
 	state->depth = 100;
+	state->screen.height = HEIGHT;
+	state->screen.width = WIDTH;
 	if (!state->mlx)
 	{
 		puts(mlx_strerror(mlx_errno));
 		return (EXIT_FAILURE);
 	}
-	state->image = mlx_new_image(state->mlx, WIDTH, HEIGHT);
+	state->image = mlx_new_image(state->mlx, state->screen.width*2, state->screen.height*2);
+	mlx_set_window_limit(state->mlx, -1, -1, state->image->width, state->image->height);
 	if (mlx_image_to_window(state->mlx, state->image, 0, 0) == -1)
 	{
 		mlx_close_window(state->mlx);
@@ -94,6 +97,7 @@ int	state_construct(t_appstate *state, int argc, char **argv)
 void	setup_interrupts(t_appstate *state)
 {
 	mlx_scroll_hook(state->mlx, (mlx_scrollfunc) handle_zoom, state);
+	mlx_resize_hook(state->mlx, (mlx_resizefunc) handle_resize, state);
 }
 
 void	state_destruct(t_appstate *state)
