@@ -18,6 +18,8 @@ FILES+=src/render.c
 FILES+=src/window_controls.c
 F_INC=-Iinclude
 
+
+all: FLAGS+= -ffast-math -O3
 all: FT_PRINTF MLX42 $(NAME)
 
 MLX42:
@@ -29,9 +31,6 @@ FT_PRINTF:
 
 debug: FLAGS+=-g
 debug: re
-
-o: FLAGS+= -ffast-math -O3
-o: re
 
 $(NAME): $(FILES:.c=.o)
 	$(CC) $(PRINTF) $(FLAGS) $(FLAGS_APP) $(MLX) $(FILES:.c=.o) -o $(NAME) $(F_INC)
