@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:49:47 by afelger           #+#    #+#             */
-/*   Updated: 2025/01/04 21:21:26 by afelger          ###   ########.fr       */
+/*   Updated: 2025/01/05 16:39:40 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <libc.h>
 # include <math.h>
+# include "colormap.h"
 # include "MLX42/MLX42.h"
 
 # define WINDOW_TITLE "Fract'ol by Alain"
@@ -84,9 +85,9 @@ struct s_i32vec2
 
 typedef struct s_renderpara
 {
-	int	startx;	// startpoint of x
-	int	add;	// amount added to x/y
-	int	fill;	// filled pixels
+	int	startx;
+	int	add;
+	int	fill;
 }	t_renderparam;
 
 typedef struct s_renderstate
@@ -110,16 +111,6 @@ int					test_iter(t_vec2 pos, t_ldb real,
 t_vec2				*map_pixel_screen(t_vec2 *result,
 						struct s_i32vec2 pos, t_vec4 map, t_screen screen);
 t_vec4				*calc_map_area(t_vec4 *result, t_vec2 center, double zoom);
-
-# define COLORMAP_COUNT 5
-
-typedef uint32_t	(*t_colormap)(unsigned char value, int depth);
-unsigned int		colormap_crazy(unsigned char value, int depth);
-unsigned int		colormap_red(unsigned char value, int depth);
-unsigned int		colormap_green(unsigned char value, int depth);
-unsigned int		colormap_blue(unsigned char value, int depth);
-unsigned int		colormap_change(unsigned char value, int depth);
-t_colormap			*get_maps(void);
 
 int					state_construct(void);
 void				state_destruct(void);
