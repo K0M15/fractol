@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 11:32:39 by afelger           #+#    #+#             */
-/*   Updated: 2025/01/13 14:02:22 by afelger          ###   ########.fr       */
+/*   Updated: 2025/01/13 14:05:59 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static void	init_mode_vals(t_appstate *state)
 		state->center.y = 0.0;
 		state->fractparam.x = 0;
 		state->fractparam.y = 0;
-		state->zoom = .5;
 	}
 	else if (state->mode == TEST)
 	{
@@ -67,7 +66,7 @@ static void	init_mode_vals(t_appstate *state)
 int	state_construct(t_appstate *s, int argc, char **argv)
 {
 	memset(s, 0, sizeof(t_appstate));
-	s->zoom = 1.0;
+	s->zoom = 0.5;
 	s->mode = parsemode(argc, argv);
 	init_mode_vals(s);
 	s->mlx = mlx_init(WIDTH, HEIGHT, WINDOW_TITLE, true);
