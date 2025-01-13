@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 11:32:39 by afelger           #+#    #+#             */
-/*   Updated: 2025/01/13 13:52:23 by afelger          ###   ########.fr       */
+/*   Updated: 2025/01/13 14:02:22 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static enum e_mode	parsemode(int argc, char **args)
 			mode = JULIA;
 		else if (ft_strncmp(args[c], "mandelbrot", 10) == 0)
 			mode = MANDELBROT;
-		else if (ft_strncmp(args[c], "test", 10) == 0)
-			mode = TEST;
 		else if (ft_strncmp(args[c], "-h", 2) == 0)
 		{
 			mode = ERROR;
