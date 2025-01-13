@@ -17,6 +17,7 @@ FILES+=src/draw_loop.c
 FILES+=src/render.c
 FILES+=src/window_controls.c
 F_INC=-Iinclude
+F_INC+=-Iinclude/MLX42
 
 
 all: FLAGS+= -ffast-math -O3

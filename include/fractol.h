@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:49:47 by afelger           #+#    #+#             */
-/*   Updated: 2025/01/05 16:39:40 by afelger          ###   ########.fr       */
+/*   Updated: 2025/01/13 13:39:44 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <libc.h>
 # include <math.h>
 # include "colormap.h"
-# include "MLX42/MLX42.h"
+# include "MLX42.h"
 
 # define WINDOW_TITLE "Fract'ol by Alain"
 # define WIDTH		1920
