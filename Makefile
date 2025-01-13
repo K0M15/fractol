@@ -21,9 +21,9 @@ F_INC=-Iinclude
 
 all: FLAGS+=-ffast-math
 all: FLAGS+=-O3
-all: FT_PRINTF MLX42 $(NAME)
+all: makeprintf MLX42 $(NAME)
 
-FT_PRINTF:
+makeprintf:
 	cd ft_printf && make
 
 MLX42:
