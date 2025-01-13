@@ -18,12 +18,13 @@ FILES+=src/render.c
 FILES+=src/window_controls.c
 F_INC=-Iinclude
 
-FT_PRINTF:
-	cd ft_printf && make
 
 all: FLAGS+=-ffast-math
 all: FLAGS+=-O3
 all: FT_PRINTF MLX42 $(NAME)
+
+FT_PRINTF:
+	cd ft_printf && make
 
 MLX42:
 	@if [ ! -d "MLX42" ]; then git clone https://github.com/codam-coding-college/MLX42.git; fi
