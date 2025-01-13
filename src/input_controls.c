@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 11:47:49 by afelger           #+#    #+#             */
-/*   Updated: 2025/01/04 20:03:39 by afelger          ###   ########.fr       */
+/*   Updated: 2025/01/13 13:52:29 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,22 @@ void	handle_params_mod(t_appstate *state)
 {
 	if (mlx_is_key_down(state->mlx, MLX_KEY_K))
 	{
-		state->fractParam.x -= 0.0001;
+		state->fractparam.x -= 0.0001;
 		state->iteration = START_ITERATION;
 	}
 	if (mlx_is_key_down(state->mlx, MLX_KEY_I))
 	{
-		state->fractParam.x += 0.0001;
+		state->fractparam.x += 0.0001;
 		state->iteration = START_ITERATION;
 	}
 	if (mlx_is_key_down(state->mlx, MLX_KEY_J))
 	{
-		state->fractParam.y -= 0.0001;
+		state->fractparam.y -= 0.0001;
 		state->iteration = START_ITERATION;
 	}
 	if (mlx_is_key_down(state->mlx, MLX_KEY_L))
 	{
-		state->fractParam.y += 0.0001;
+		state->fractparam.y += 0.0001;
 		state->iteration = START_ITERATION;
 	}
 }

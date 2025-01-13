@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 11:32:39 by afelger           #+#    #+#             */
-/*   Updated: 2025/01/04 20:08:05 by afelger          ###   ########.fr       */
+/*   Updated: 2025/01/13 13:52:23 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,23 @@ static void	init_mode_vals(t_appstate *state)
 	{
 		state->center.x = .0;
 		state->center.y = .0;
-		state->fractParam.x = -0.7;
-		state->fractParam.y = 0.27015;
+		state->fractparam.x = -0.7;
+		state->fractparam.y = 0.27015;
 	}
 	else if (state->mode == MANDELBROT)
 	{
 		state->center.x = -.8;
 		state->center.y = 0.0;
-		state->fractParam.x = 0;
-		state->fractParam.y = 0;
+		state->fractparam.x = 0;
+		state->fractparam.y = 0;
 		state->zoom = .5;
 	}
 	else if (state->mode == TEST)
 	{
 		state->center.x = .0;
 		state->center.y = .0;
-		state->fractParam.x = 0;
-		state->fractParam.y = 0;
+		state->fractparam.x = 0;
+		state->fractparam.y = 0;
 	}
 }
 

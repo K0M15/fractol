@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 14:05:08 by afelger           #+#    #+#             */
-/*   Updated: 2025/01/04 20:40:17 by afelger          ###   ########.fr       */
+/*   Updated: 2025/01/13 13:52:38 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	render(t_appstate *state, t_vec4 map,
 		{
 			map_pixel_screen(&renders.buffer, (struct s_i32vec2){renders.x,
 				renders.y}, map, renders.screen);
-			renders.col = fract(renders.buffer, state->fractParam.x,
-					state->fractParam.y, state->depth);
+			renders.col = fract(renders.buffer, state->fractparam.x,
+					state->fractparam.y, state->depth);
 			render_square(&renders, &para, state);
 			renders.x += para.add;
 		}
