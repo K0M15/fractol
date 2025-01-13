@@ -6,7 +6,7 @@
 /*   By: afelger <afelger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:49:47 by afelger           #+#    #+#             */
-/*   Updated: 2025/01/13 13:39:44 by afelger          ###   ########.fr       */
+/*   Updated: 2025/01/13 13:51:47 by afelger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,8 @@ t_vec2				*map_pixel_screen(t_vec2 *result,
 						struct s_i32vec2 pos, t_vec4 map, t_screen screen);
 t_vec4				*calc_map_area(t_vec4 *result, t_vec2 center, double zoom);
 
-int					state_construct(void);
-void				state_destruct(void);
+int					state_construct(t_appstate *s, int argc, char **argv);
+void				state_destruct(t_appstate *state);
 
 void				handle_zoom(double xdelta, double ydelta,
 						t_appstate *state);
